@@ -1,6 +1,6 @@
 # node-create-file-script-demo
 
-##实现功能
+## 实现功能
 
 1.`node demo.js fileName01`可生成目录 fileName01,`node demo.js fileName02`可生成目录 fileName02.
 2.如果要生成的目录已经存在，不能创建并会看到`This folder already exists`
