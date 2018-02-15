@@ -72,7 +72,8 @@ h1,h2,h3,h4,h5,h6{font-weight: normal;}
     shell.exec("git init")  // 初始化仓库
     shell.exec("git add .")  // 初始化仓库
     shell.exec("git commit -m '创建'")  // 初始化仓库
-
+    
+    shell.exec("http-server -c-1")
     process.exit(0)
 }
 
