@@ -15,12 +15,11 @@
 ├── README.md
 └── src
     ├── css
-    │   └── main.scss
+    │   ├── main.scss
+    │   └── reset.scss
     ├── index.html
     └── js
         └── main.js
-
-
 ```
 
 4.index.html 的内容为

@@ -53,7 +53,7 @@ if (fs.existsSync(dirName)) {
 </body>
 </html>`)
 
-    fs.writeFileSync("./src/css/main.scss", 
+    fs.writeFileSync("./src/css/reset.scss", 
     `*{ margin:0; padding:0; }
 li{list-style: none;}
 a{color: inherit; text-decoration:none;}
@@ -61,6 +61,8 @@ h1,h2,h3,h4,h5,h6{font-weight: normal;}
 .clearfix::after{content:"";display:block;clear:both;}
 
 `)
+
+    fs.writeFileSync("./src/css/main.scss", `@import './reset.scss';`)
     fs.writeFileSync("./src/js/main.js", 
     `{
       
