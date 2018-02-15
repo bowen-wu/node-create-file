@@ -3,7 +3,7 @@ var fs = require('fs')
 var dirName = process.argv[2] // param is second start 
 
 if (fs.existsSync(dirName)) {
-    console.log('This folder already exists');
+    console.log('这个文件已经被创建了，请您重新命名文件夹名称');
 }else{
     process.chdir("/home/bowen-wu/Desktop") // cd ~/Desktop  lunix  进入路径而已
     // process.chdir("C:\\Users\\Administrator\\Desktop") // cd ~/Desktop windows

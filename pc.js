@@ -1,47 +1,78 @@
 var fs = require('fs')
+var shell = require("shelljs")  // 执行 shell 命令模块
 
-var dirName = process.argv[2] // param is second start 
+
+var dirName = process.argv[2] // param is second start
+
+
+
+// shell.exec("echo hello " + name);
+
+ 
 
 if (fs.existsSync(dirName)) {
-    console.log('This folder already exists');
+    console.log('这个文件已经被创建了，请您重新命名文件夹名称');
 }else{
-    process.chdir("/home/bowen-wu/Desktop") // cd ~/Desktop  lunix  进入路径而已
+    process.chdir("/home/wubowen/Desktop") // cd ~/Desktop  lunix  进入路径而已
     // process.chdir("C:\\Users\\Administrator\\Desktop") // cd ~/Desktop windows
     fs.mkdirSync("./" + dirName) // mkdir $1
     process.chdir("./" + dirName) // cd $1
-    fs.mkdirSync('css') // mkdir css
-    fs.mkdirSync('js') // mkdir js
+    fs.mkdirSync('src') // mkdir css
+    fs.mkdirSync('src/css') // mkdir src/css
+    fs.mkdirSync('src/js') // mkdir src/js
+    fs.mkdirSync('dist') // mkdir js
 
-    fs.writeFileSync("./index.html", 
-    '<!DOCTYPE html>\n' +
-    '<html lang="zh-Hans">\n' +
-    '<head>\n' +
-    '   <meta charset="UTF-8">\n' +
-    '   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">\n' +
-    '   <meta http-equiv="X-UA-Compatible" content="ie=edge">\n' +
-    '   <title>' + dirName + '</title>\n' +
-    '   <link rel="stylesheet" href="./css/style.css">' +
-    '</head>\n' +
-    '<body>\n' +
-    '\n' +
-    '   <script src="./js/main.js"></script>' +
-    '</body>\n' +
-    '</html>')
 
-    fs.writeFileSync("css/style.css", 
-    '*{ margin:0; padding:0; }\n' +
-    'li{list-style: none;}\n' +
-    'a{color: inherit; text-decoration:none;}\n' +
-    'h1,h2,h3,h4,h5,h6{font-weight: normal;}\n' +
-    '.clearfix::after{content:"";display:block;clear:both;}\n' +
-    '\n' +
-    '\n')
-    fs.writeFileSync("./js/main.js", 
-    'window.onload = function(){' +
-    '   \n' +
-    '   \n' +
-    '}')
-    fs.writeFileSync("README.md", "# "+dirName)
+    console.log('npm 命令路径为：')
+    shell.exec("whereis npm")  // 查找 npm 路径
+    console.log('git 命令路径为：')
+    shell.exec("whereis git")  // 查找 git 路径
+    console.log('如果 npm 和 git 路径都是在 /usr/bin/git，那么 shelljs 则能正常运行命令')
+    shell.exec("npm install")  // 初始化 
+    // 执行的命令的目录在 /usr/bin/git
+    // 由于我安装了 node-sass 创建了 .npm-global 
+    // 所以我的 npm 命令 在 /home/wubowen/.npm-global/bin/npm 
+    // 故 npm install 不能发挥作用
+
+
+
+
+
+    
+    fs.writeFileSync("./.gitignore", 'node_modules')
+    fs.writeFileSync("./src/index.html", 
+    `<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> ${dirName} </title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    
+    <script src="./js/main.js"></script>
+</body>
+</html>`)
+
+    fs.writeFileSync("./src/css/main.scss", 
+    `*{ margin:0; padding:0; }
+li{list-style: none;}
+a{color: inherit; text-decoration:none;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+.clearfix::after{content:"";display:block;clear:both;}
+
+`)
+    fs.writeFileSync("./src/js/main.js", 
+    `{
+      
+}`)
+    fs.writeFileSync("README.md", "## "+dirName)
+
+    shell.exec("git init")  // 初始化仓库
+    shell.exec("git add .")  // 初始化仓库
+    shell.exec("git commit -m '创建'")  // 初始化仓库
 
     process.exit(0)
 }
