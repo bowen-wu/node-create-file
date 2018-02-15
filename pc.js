@@ -1,5 +1,5 @@
 var fs = require('fs')
-var shell = require("shelljs")  // 执行 shell 命令模块
+var shell = require("shelljs")  // 引入 shell 命令模块
 
 
 var dirName = process.argv[2] // param is second start
@@ -21,14 +21,11 @@ if (fs.existsSync(dirName)) {
     fs.mkdirSync('src/css') // mkdir src/css
     fs.mkdirSync('src/js') // mkdir src/js
     fs.mkdirSync('dist') // mkdir js
-
-
-    console.log('npm 命令路径为：')
-    shell.exec("whereis npm")  // 查找 npm 路径
-    console.log('git 命令路径为：')
-    shell.exec("whereis git")  // 查找 git 路径
-    console.log('如果 npm 和 git 路径都是在 /usr/bin/git，那么 shelljs 则能正常运行命令')
-    shell.exec("npm install")  // 初始化 
+    
+    
+    // 使用 env 命令从而解决 npm 路径问题
+    shell.exec("/usr/bin/env npm init -y")  // 初始化
+    shell.exec("/usr/bin/env npm install")  // 安装依赖 
     // 执行的命令的目录在 /usr/bin/git
     // 由于我安装了 node-sass 创建了 .npm-global 
     // 所以我的 npm 命令 在 /home/wubowen/.npm-global/bin/npm 
@@ -70,6 +67,8 @@ h1,h2,h3,h4,h5,h6{font-weight: normal;}
 }`)
     fs.writeFileSync("README.md", "## "+dirName)
 
+
+    
     shell.exec("git init")  // 初始化仓库
     shell.exec("git add .")  // 初始化仓库
     shell.exec("git commit -m '创建'")  // 初始化仓库

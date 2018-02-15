@@ -10,6 +10,8 @@
 ```
 .
 ├── dist
+├── package.json
+├── package-lock.json
 ├── README.md
 └── src
     ├── css
@@ -17,6 +19,7 @@
     ├── index.html
     └── js
         └── main.js
+
 
 ```
 
