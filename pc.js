@@ -60,7 +60,9 @@ li{list-style: none;}
 a{color: inherit; text-decoration:none;}
 h1,h2,h3,h4,h5,h6{font-weight: normal;}
 .clearfix::after{content:"";display:block;clear:both;}
-
+body{font-family: -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+    font-size: 12px;
+}
 `)
 
     fs.writeFileSync("./src/css/main.scss", `@import './reset.scss';`)
